@@ -1,0 +1,11 @@
+.MenuToggle {   
+    transition: left .55s ease-in;
+    cursor: pointer;
+    color: #000;
+    animation: moveright .55s;
+    animation-timing-function: linear;
+}
+
+.MenuToggle:hover {
+    opacity: .7;
+}

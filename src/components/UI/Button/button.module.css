@@ -1,0 +1,12 @@
+.Button {   
+    border-radius: 4px;
+    border: 1px solid #ccc;    
+}
+
+.Button:focus {
+    outline: none;
+}
+
+.Button:active {
+    box-shadow: inset 2px 2px 1px rgba(0, 0, 0, .3);
+}

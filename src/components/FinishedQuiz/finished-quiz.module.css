@@ -1,0 +1,26 @@
+.FinishedQuiz {
+    padding: 20px;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 0 10px;
+}
+
+.FinishedQuiz ul li span {
+    font-size: 24px;
+}
+
+.FinishedQuiz ul li span svg {
+    vertical-align: bottom;
+    margin: 0 0 0 5px;
+}
+
+.FinishedQuiz p {
+    font-size: 24px;
+}
+
+.FinishedQuiz button {
+    font-size: 20px;
+    margin: 0 15px 0 0;
+}

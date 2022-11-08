@@ -1,0 +1,46 @@
+.Drawer {
+    width: 77px;
+    text-align: center;   
+}
+
+.Drawer div:nth-child(1) {
+    padding: 20px 0 0 0;    
+}
+
+.Drawer.open {
+    width: 320px;
+    animation: moveright .45s;
+    animation-timing-function: linear;
+}
+
+.Drawer.open div:nth-child(1) {
+    width: 319px;
+    animation: moveright .45s;
+    animation-timing-function: linear;   
+}
+
+.Drawer.open div:nth-child(1) div {
+    text-align: end;
+    padding: 0 15px 0 0;
+}
+
+.Drawer.close {   
+    transition: .45s;
+    animation: moveleft .45s;
+    animation-timing-function: linear;
+}
+
+.Drawer.close div:nth-child(1) {
+    border: 0;   
+}
+
+
+@keyframes moveleft {
+    from {left: 319px;}
+    to {left: 77px;}
+}
+
+@keyframes moveright {
+    from {width: 77px;}
+    to {width: 319px;}
+}
