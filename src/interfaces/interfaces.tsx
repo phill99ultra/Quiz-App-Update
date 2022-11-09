@@ -31,3 +31,10 @@ export interface QuizStore {
     quiz: Quiz[];
 }
 
+export interface NavigationLink {
+    id: number,
+    to: string,
+    label: string,
+    icon: React.ReactNode    
+}
+

@@ -1,24 +1,11 @@
 import React from 'react';
-import { Drawer, List, ListItem, ListItemText } from '@mui/material';
+import { Drawer } from '@mui/material';
 
 import classes from './drawer.module.css';
 import MenuToggle from '../MenuToggle/MenuToggle';
 import { useQuizStore } from '../../../stores/quiz/store';
 import BackdropComponent from '../../UI/Backdrop/Backdrop';
-
-const links = [1, 2, 3];
-
-const renderLinks = () => {
-    return links.map((link, index) => {
-        return (
-            <ListItem key={index}>
-                <ListItemText>
-                    Link {link}
-                </ListItemText>
-            </ListItem>
-        )
-    })
-}
+import PagesLinks from './Links/Links';
 
 const DrawerComponent: React.FC<{}> = () => {
     const [menu, setMenuHandler] = useQuizStore(state => [state.menu, state.setMenuHandler]);
@@ -32,12 +19,12 @@ const DrawerComponent: React.FC<{}> = () => {
                     isOpen={menu}
                     handleToggle={setMenuHandler}
                 />
-                <List>
-                    { renderLinks() }
-                </List>
+                <PagesLinks 
+                    listClass={classes.NavLinks}
+                    handleToggle={setMenuHandler}
+                />
             </Drawer>
-            { menu && <BackdropComponent handleToggle={setMenuHandler} /> }
-           
+            { menu && <BackdropComponent handleToggle={setMenuHandler} /> }           
         </React.Fragment>
     )
 }

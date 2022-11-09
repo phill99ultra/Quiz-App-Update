@@ -5,6 +5,7 @@ import { green, red } from '@mui/material/colors';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import QuizIcon from '@mui/icons-material/Quiz';
+import { Link } from 'react-router-dom';
 
 import classes from './finished-quiz.module.css';
 import { Quiz, State } from '../../interfaces/interfaces';
@@ -58,14 +59,15 @@ const FinishedQuiz: React.FC<FinishedQuizProps> = ({ quiz, quizLength, results, 
                     endIconBtn={<ReplayIcon fontSize="large" />}
                     onClick={handleRetry}
                 />
-                 <ButtonComponent
-                    title="Treci la lista testelor" 
-                    variantBtn="contained" 
-                    sizeBtn='medium' 
-                    colorBtn='success'
-                    endIconBtn={<QuizIcon fontSize="large" />}
-                    // onClick={handleRetry}
-                />                    
+                <Link to='/'>
+                    <ButtonComponent
+                        title="Treci la lista testelor" 
+                        variantBtn="contained" 
+                        sizeBtn='medium' 
+                        colorBtn='success'
+                        endIconBtn={<QuizIcon fontSize="large" />}                   
+                    />                    
+                </Link>
             </Box>
         </Box>
     )

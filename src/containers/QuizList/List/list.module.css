@@ -1,0 +1,12 @@
+.QuizLink {
+    text-decoration: none;
+    color: #000;
+}
+
+.QuizLink span {
+    font-size: 24px;
+}
+
+.QuizLink:hover {
+    color: blue;
+}

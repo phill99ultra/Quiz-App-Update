@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 
 import classes from './button.module.css';
 
-interface BtnProps {
+type BtnProps = {
     title: string;
     variantBtn?: "text" | "outlined" | "contained" | undefined;
     sizeBtn?: "small" | "medium" | "large" | undefined;

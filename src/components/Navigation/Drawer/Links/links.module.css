@@ -1,0 +1,20 @@
+.NavLink {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    min-height: 44px;
+}
+
+.NavIcon {
+    padding: 0;
+}
+
+.NavText span {
+    font-size: 24px;
+    white-space: nowrap;
+}
+
+.NavLink:hover {
+    color: blue;
+}

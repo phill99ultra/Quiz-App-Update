@@ -3,8 +3,9 @@
     text-align: center;   
 }
 
-.Drawer div:nth-child(1) {
-    padding: 20px 0 0 0;    
+.Drawer div:only-child {
+    width: calc(77px);
+    overflow-x: hidden;  
 }
 
 .Drawer.open {
@@ -13,13 +14,13 @@
     animation-timing-function: linear;
 }
 
-.Drawer.open div:nth-child(1) {
+.Drawer.open div:only-child {
     width: 319px;
     animation: moveright .45s;
     animation-timing-function: linear;   
 }
 
-.Drawer.open div:nth-child(1) div {
+.Drawer.open div:only-child div {
     text-align: end;
     padding: 0 15px 0 0;
 }
@@ -30,8 +31,20 @@
     animation-timing-function: linear;
 }
 
-.Drawer.close div:nth-child(1) {
-    border: 0;   
+.Drawer.close div:only-child {   
+    width: calc(77px);
+    transition: .45s;    
+    animation-timing-function: linear;
+}
+
+.NavLinks li a div:last-child {
+    opacity: 0;
+    display: none;
+}
+
+.Drawer.open .NavLinks li a div:last-child {
+    opacity: 1;
+    display: block;
 }
 
 
