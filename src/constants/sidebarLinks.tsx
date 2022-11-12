@@ -1,4 +1,4 @@
-import { NavigationLink } from './interfaces/interfaces';
+import { NavigationLink } from '../interfaces/interfaces';
 import LoginIcon from '@mui/icons-material/Login';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';

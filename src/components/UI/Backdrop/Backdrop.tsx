@@ -5,7 +5,7 @@ type BackDropProps = {
     handleToggle: () => void;
 }
 
-const BackdropComponent: React.FC<BackDropProps> = ({ handleToggle }) => {    
+export const BackdropComponent: React.FC<BackDropProps> = ({ handleToggle }) => {    
     return(
         <Backdrop 
             sx={{ zIndex: 1 }}
@@ -14,5 +14,3 @@ const BackdropComponent: React.FC<BackDropProps> = ({ handleToggle }) => {
         />       
     )
 }
-
-export default BackdropComponent;

@@ -5,3 +5,7 @@
     flex-grow: 1;
     width: 100%;   
 }
+
+.QuizList h3 {
+    color: #fff;
+}

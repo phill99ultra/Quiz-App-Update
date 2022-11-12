@@ -2,7 +2,7 @@ import React from 'react';
 import { List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
-import { SIDEBAR_LINKS } from '../../../../constants';
+import { SIDEBAR_LINKS } from '../../../../constants/sidebarLinks';
 import classes from './links.module.css';
 
 type LinksProps = {
@@ -21,7 +21,7 @@ const PagesLinks: React.FC<LinksProps> = ({ listClass, handleToggle }) => {
                         <NavLink 
                             className={classes.NavLink}
                             to={link.to}
-                            onClick={() => handleToggle()}
+                            //onClick={() => handleToggle()}
                         >
                             <ListItemIcon 
                                 className={classes.NavIcon}
@@ -29,6 +29,7 @@ const PagesLinks: React.FC<LinksProps> = ({ listClass, handleToggle }) => {
                                 { link.icon }
                             </ListItemIcon>
                             <ListItemText
+                                onClick={() => handleToggle()}
                                 className={classes.NavText}
                             >
                                 { link.label }

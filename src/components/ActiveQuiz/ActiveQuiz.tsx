@@ -5,7 +5,7 @@ import classes from './active-quiz.module.css';
 import { Quiz, AnswerState } from '../../interfaces/interfaces';
 import AnswersList from './AnswersList/AnswersList';
 
-interface ActiveQuizProps {
+type ActiveQuizProps = {
     quiz: Quiz;
     quizLength: number;
     answerNumber: number;

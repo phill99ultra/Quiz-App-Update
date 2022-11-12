@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 import classes from './finished-quiz.module.css';
 import { Quiz, State } from '../../interfaces/interfaces';
-import ButtonComponent from '../UI/Button/Button';
+import { ButtonComponent } from '../UI/Button/Button';
 
 interface FinishedQuizProps {
     quiz: Quiz[];
@@ -65,7 +65,8 @@ const FinishedQuiz: React.FC<FinishedQuizProps> = ({ quiz, quizLength, results, 
                         variantBtn="contained" 
                         sizeBtn='medium' 
                         colorBtn='success'
-                        endIconBtn={<QuizIcon fontSize="large" />}                   
+                        endIconBtn={<QuizIcon fontSize="large" />}
+                        onClick={handleRetry}                   
                     />                    
                 </Link>
             </Box>

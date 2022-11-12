@@ -26,7 +26,7 @@ const Quiz: React.FC<{}> = () => {
     ]);   
     
     return (
-        <div className={classes.Quiz}>
+        <Box className={classes.Quiz}>
             <Box className={classes.QuizWrapper}>
                 <Typography variant='h3'>Răspunde-ți la toate întrebările</Typography>
                 {
@@ -51,7 +51,7 @@ const Quiz: React.FC<{}> = () => {
                     )
                 }               
             </Box>
-        </div>
+        </Box>
     )
 }
 

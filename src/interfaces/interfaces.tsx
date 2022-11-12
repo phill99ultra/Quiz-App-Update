@@ -30,11 +30,25 @@ export interface QuizStore {
     setActiveQuestion: (answerId: number) => void;
     quiz: Quiz[];
 }
-
 export interface NavigationLink {
     id: number,
     to: string,
     label: string,
     icon: React.ReactNode    
+}
+export interface AuthValues {
+    email: string;
+    password: string;
+}
+
+export interface FormControl {   
+    name: string,
+    label: string,   
+}
+export interface AuthFormControls {
+    formControls: {
+        email: FormControl,
+        password: FormControl
+    }
 }
 
