@@ -56,7 +56,7 @@ const FinishedQuiz: React.FC<FinishedQuizProps> = ({ quiz, quizLength, results, 
                     title="Repetă încă o dată" 
                     variantBtn="contained" 
                     sizeBtn='medium' 
-                    endIconBtn={<ReplayIcon fontSize="large" />}
+                    iconBtn={<ReplayIcon fontSize="large" />}
                     onClick={handleRetry}
                 />
                 <Link to='/'>
@@ -65,7 +65,7 @@ const FinishedQuiz: React.FC<FinishedQuizProps> = ({ quiz, quizLength, results, 
                         variantBtn="contained" 
                         sizeBtn='medium' 
                         colorBtn='success'
-                        endIconBtn={<QuizIcon fontSize="large" />}
+                        iconBtn={<QuizIcon fontSize="large" />}
                         onClick={handleRetry}                   
                     />                    
                 </Link>

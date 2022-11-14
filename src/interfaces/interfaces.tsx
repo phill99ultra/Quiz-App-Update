@@ -52,3 +52,27 @@ export interface AuthFormControls {
     }
 }
 
+export interface AnswerFormControl extends FormControl {
+    text: string
+}
+export interface CreateQuiz {
+    answer: AnswerFormControl,
+    options: number[],
+    formControls: {
+        question: FormControl,
+        option1: FormControl,
+        option2: FormControl,
+        option3: FormControl,
+        option4: FormControl,
+    }
+}
+
+export interface CreateQuizValues {
+    answer: number | string,
+    question: string,
+    option1: string,
+    option2: string,
+    option3: string,
+    option4: string,
+}
+

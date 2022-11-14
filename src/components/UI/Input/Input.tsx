@@ -1,8 +1,6 @@
 import React from 'react';
 import { TextField } from '@mui/material';
 
-import classes from './input.module.css';
-
 type InputProps = {
     inputName?: string;
     inputLabel: string;
@@ -24,13 +22,11 @@ export const InputComponent: React.FC<InputProps> = (
         inputValue,
         inputError,
         inputErrorText
-    }) => {
-
-    const cls = [classes.TextField]   
+    }) => {   
 
     return(
         <TextField 
-            className={cls.join(' ')}   
+            sx={{ borderRadius: '5px' }}             
             error={inputError}   
             name={inputName}      
             label={inputLabel}

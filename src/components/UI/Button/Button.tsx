@@ -9,7 +9,7 @@ type BtnProps = {
     variantBtn?: "text" | "outlined" | "contained" | undefined;
     sizeBtn?: "small" | "medium" | "large" | undefined;
     colorBtn?: "inherit" | "primary" | "secondary" | "success" | "error" | "info" | "warning" | undefined
-    endIconBtn?: JSX.Element;
+    iconBtn?: JSX.Element;
     onClick?: () => void;  
     disableBtn?: boolean;  
 }
@@ -20,17 +20,18 @@ export const ButtonComponent: React.FC<BtnProps> = (
         title, 
         variantBtn, 
         sizeBtn, 
-        endIconBtn, 
+        iconBtn, 
         colorBtn, 
         onClick, 
-        disableBtn }) => {
+        disableBtn 
+    }) => {
     return(
         <Button      
             type={typeBtn}                 
             className={classes.Button} 
             variant={variantBtn} 
             size={sizeBtn}    
-            endIcon={endIconBtn} 
+            endIcon={iconBtn} 
             color={colorBtn}           
             onClick={() => onClick?.()}
             disabled={disableBtn}

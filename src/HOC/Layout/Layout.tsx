@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@mui/material';
 
 import classes from './layout.module.css';
 import DrawerComponent from '../../components/Navigation/Drawer/Drawer';
@@ -9,12 +10,12 @@ type LayoutProps = {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {   
     return(
-        <div className={classes.Layout}>
+        <Box className={classes.Layout}>
             <DrawerComponent/>           
-            <main>
+            <Box component='main'>
                 { children }
-            </main>
-        </div>
+            </Box>
+        </Box>
     )
 }
 
