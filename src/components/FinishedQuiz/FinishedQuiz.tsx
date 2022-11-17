@@ -19,7 +19,7 @@ interface FinishedQuizProps {
 }
 
 const FinishedQuiz: React.FC<FinishedQuizProps> = ({ quiz, quizLength, results, handleRetry }) => {
-    console.log('results ', results)
+   
     const successCount = Object.keys(results).reduce((total, key) => {
         if (results[key] === State.SUCCESS) total++
         return total

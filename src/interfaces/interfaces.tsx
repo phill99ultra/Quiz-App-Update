@@ -4,9 +4,9 @@ export interface Answer {
 }
 
 export interface Quiz {
-    id: string;    
+    id: number;    
     question: string;
-    rightAnswerId: string;
+    rightAnswerId: number | string;
     answers: Answer[]    
 }
 
@@ -28,6 +28,7 @@ export interface QuizStore {
     setMenuHandler: () => void;
     setRetryQuiz: () => void;
     setActiveQuestion: (answerId: number) => void;
+    setQuestionItem: (val: CreateQuizValues) => void;
     quiz: Quiz[];
 }
 export interface NavigationLink {

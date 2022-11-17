@@ -3,6 +3,7 @@ import { Typography, Divider } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
+import axios from 'axios';
 
 import { ButtonComponent } from '../../components/UI/Button/Button';
 import { InputComponent } from '../../components/UI/Input/Input';
@@ -12,19 +13,28 @@ import { CREATE_QUIZ_STATE } from '../../constants/createQuizValues';
 import { FormWrapper } from '../../HOC/FormWrapper/FormWrapper';
 import { ButtonsWrapper } from '../../HOC/Buttons/ButtonsWrapper';
 import { SelectComponent } from '../../components/UI/Select/Select';
+import { useQuizStore } from '../../stores/quiz/store';
 
 const QuizCreate: React.FC<{}> = () => {
-    
+    const [
+        setQuestionItem,
+        quiz, 
+    ] = useQuizStore(state => [
+        state.setQuestionItem,
+        state.quiz,
+    ]);
     return(
         <FormWrapper>
             <Typography variant='h3'>Creează test</Typography>
             <Formik
                 initialValues={initialValues}
                 validationSchema={createQuizSchema}
-                onSubmit={(values, formikHelpers) => {
-                    console.log('values ', values);
-                    console.log('helpers ', formikHelpers);
-                    console.log('-----------');
+                onSubmit={(values, actions) => {
+                    setQuestionItem(values);
+                    // console.log('helpers ', formikHelpers);
+                    // resetForm();
+                    console.log('quiz after creating question ', quiz)
+                    actions.resetForm();
                 }}
             >
                 {
@@ -70,14 +80,15 @@ const QuizCreate: React.FC<{}> = () => {
                                     typeBtn='submit'
                                     sizeBtn='medium' 
                                     colorBtn='primary'
-                                    iconBtn={<PlaylistAddIcon fontSize="large" />}
                                     disableBtn={!isValid}
+                                    iconBtn={<PlaylistAddIcon fontSize="large" />}
                                 />
                                  <ButtonComponent
                                     title='Creare test'
                                     variantBtn="contained" 
                                     sizeBtn='medium' 
                                     colorBtn='success'
+                                    disableBtn={quiz.length === 0}
                                     iconBtn={<CreateNewFolderIcon fontSize="large" />}
                                 />
                             </ButtonsWrapper>
