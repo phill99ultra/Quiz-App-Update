@@ -3,7 +3,6 @@ import { Typography, Divider } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
-import axios from 'axios';
 
 import { ButtonComponent } from '../../components/UI/Button/Button';
 import { InputComponent } from '../../components/UI/Input/Input';
@@ -14,15 +13,24 @@ import { FormWrapper } from '../../HOC/FormWrapper/FormWrapper';
 import { ButtonsWrapper } from '../../HOC/Buttons/ButtonsWrapper';
 import { SelectComponent } from '../../components/UI/Select/Select';
 import { useQuizStore } from '../../stores/quiz/store';
+import { useCreateQuiz } from '../../RQ/mutations/createQuiz';
 
 const QuizCreate: React.FC<{}> = () => {
     const [
         setQuestionItem,
         quiz, 
+        setClearQuiz
     ] = useQuizStore(state => [
         state.setQuestionItem,
         state.quiz,
+        state.setClearQuiz
     ]);
+
+    const { mutate } = useCreateQuiz();
+    const handleClearQuiz = () => {
+        mutate(quiz);
+        setClearQuiz();
+    }
     return(
         <FormWrapper>
             <Typography variant='h3'>Creează test</Typography>
@@ -30,10 +38,7 @@ const QuizCreate: React.FC<{}> = () => {
                 initialValues={initialValues}
                 validationSchema={createQuizSchema}
                 onSubmit={(values, actions) => {
-                    setQuestionItem(values);
-                    // console.log('helpers ', formikHelpers);
-                    // resetForm();
-                    console.log('quiz after creating question ', quiz)
+                    setQuestionItem(values);                
                     actions.resetForm();
                 }}
             >
@@ -90,6 +95,7 @@ const QuizCreate: React.FC<{}> = () => {
                                     colorBtn='success'
                                     disableBtn={quiz.length === 0}
                                     iconBtn={<CreateNewFolderIcon fontSize="large" />}
+                                    onClick={handleClearQuiz}
                                 />
                             </ButtonsWrapper>
                             {/* <pre>{JSON.stringify(values, null, 4)}</pre>   */}

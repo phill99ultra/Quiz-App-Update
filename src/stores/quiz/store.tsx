@@ -88,6 +88,9 @@ export const useQuizStore = create<QuizStore>()(
                     quiz: [questionItem].concat(quiz)
                 });       
             },
+            setClearQuiz: () => {
+                set({ quiz: [] })
+            },
             quiz: []
        })
     )

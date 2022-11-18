@@ -29,6 +29,7 @@ export interface QuizStore {
     setRetryQuiz: () => void;
     setActiveQuestion: (answerId: number) => void;
     setQuestionItem: (val: CreateQuizValues) => void;
+    setClearQuiz: () => void;
     quiz: Quiz[];
 }
 export interface NavigationLink {
