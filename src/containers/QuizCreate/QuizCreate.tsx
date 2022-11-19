@@ -12,25 +12,20 @@ import { CREATE_QUIZ_STATE } from '../../constants/createQuizValues';
 import { FormWrapper } from '../../HOC/FormWrapper/FormWrapper';
 import { ButtonsWrapper } from '../../HOC/Buttons/ButtonsWrapper';
 import { SelectComponent } from '../../components/UI/Select/Select';
+import ModalTitleQuiz from './Modal/Modal';
 import { useQuizStore } from '../../stores/quiz/store';
-import { useCreateQuiz } from '../../RQ/mutations/createQuiz';
 
 const QuizCreate: React.FC<{}> = () => {
     const [
         setQuestionItem,
-        quiz, 
-        setClearQuiz
+        quiz,       
+        setModalTitleQuiz,       
     ] = useQuizStore(state => [
         state.setQuestionItem,
-        state.quiz,
-        state.setClearQuiz
+        state.quiz,      
+        state.setModalTitleQuiz,        
     ]);
-
-    const { mutate } = useCreateQuiz();
-    const handleClearQuiz = () => {
-        mutate(quiz);
-        setClearQuiz();
-    }
+   
     return(
         <FormWrapper>
             <Typography variant='h3'>Creează test</Typography>
@@ -95,9 +90,10 @@ const QuizCreate: React.FC<{}> = () => {
                                     colorBtn='success'
                                     disableBtn={quiz.length === 0}
                                     iconBtn={<CreateNewFolderIcon fontSize="large" />}
-                                    onClick={handleClearQuiz}
+                                    onClick={setModalTitleQuiz}
                                 />
                             </ButtonsWrapper>
+                            <ModalTitleQuiz />
                             {/* <pre>{JSON.stringify(values, null, 4)}</pre>   */}
                             {/* <pre>{JSON.stringify(errors, null, 4)}</pre>                        */}
                         </Form>

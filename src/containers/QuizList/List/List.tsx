@@ -1,26 +1,23 @@
 import React from 'react';
 import { ListItem, List, ListItemText } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import axios from 'axios';
+import { useQuizList } from '../../../RQ/queries/useQuizList';
 
 import classes from './list.module.css';
+import { LoaderComponent } from '../../../components/UI/Loader/Loader';
 
 const listP = [1, 2, 3];
 
 const Quizes: React.FC<{}> = () => {
-    const fetchQuiz = () => {
-        return axios.get('https://react-quiz-app-8f76b-default-rtdb.europe-west1.firebasedatabase.app/quiz.json')
-    }
-
-    const { data, isLoading, isError, isFetching, error } = useQuery('quiz', fetchQuiz)
+    const { data, isLoading, isError, isFetching, error } = useQuizList()
 
     console.log('data ', data?.data)
     console.log('error', { isLoading, isFetching })
     if (isError && error instanceof Error) {
         return <h2>{error.message}</h2>
     }
-    return(
+    if (isLoading) return <LoaderComponent/>
+    return(       
         <List>
             {
                 listP.map((element, index) => (
@@ -29,8 +26,7 @@ const Quizes: React.FC<{}> = () => {
                             className={classes.QuizLink}
                             to={`/quiz/${element}`}
                         >
-                            <ListItemText>
-                                { isLoading && <span>Is loading...</span> }
+                            <ListItemText>                                
                                 Test Nr. {element} 
                             </ListItemText>
                         </NavLink>

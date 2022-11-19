@@ -11,6 +11,7 @@ export const useQuizStore = create<QuizStore>()(
             menu: null,
             results: {},
             isFinished: false,
+            modalTitleQuiz: false,
             activeQuestion: 0,
             answerState: null,
             setMenuHandler: () => {
@@ -67,8 +68,7 @@ export const useQuizStore = create<QuizStore>()(
                     });                      
                 }
             },
-            setQuestionItem: (value: CreateQuizValues) => {
-                console.log('form values ', value);
+            setQuestionItem: (value: CreateQuizValues) => {                
                 const { quiz } = get();
                 const { answer, question, option1, option2, option3, option4 } = value;   
             
@@ -91,7 +91,12 @@ export const useQuizStore = create<QuizStore>()(
             setClearQuiz: () => {
                 set({ quiz: [] })
             },
-            quiz: []
+            setModalTitleQuiz: () => {
+                set((state) => (
+                    { modalTitleQuiz: !state.modalTitleQuiz}
+                ))
+            },
+            quiz: []         
        })
     )
 );

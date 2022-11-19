@@ -23,6 +23,7 @@ export interface QuizStore {
     menu: boolean | null;
     results: any;
     isFinished: boolean;
+    modalTitleQuiz: boolean;
     activeQuestion: number;
     answerState: AnswerState | null;
     setMenuHandler: () => void;
@@ -30,6 +31,7 @@ export interface QuizStore {
     setActiveQuestion: (answerId: number) => void;
     setQuestionItem: (val: CreateQuizValues) => void;
     setClearQuiz: () => void;
+    setModalTitleQuiz: () => void;
     quiz: Quiz[];
 }
 export interface NavigationLink {
@@ -43,6 +45,14 @@ export interface AuthValues {
     password: string;
 }
 
+export interface QuizTitle {
+    title: string;
+}
+
+export interface AddQuiz {
+    title: string,
+    items: Quiz[]
+}
 export interface FormControl {   
     name: string,
     label: string,   
@@ -77,4 +87,5 @@ export interface CreateQuizValues {
     option3: string,
     option4: string,
 }
+
 

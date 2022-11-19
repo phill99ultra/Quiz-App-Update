@@ -11,7 +11,7 @@ import classes from './finished-quiz.module.css';
 import { Quiz, State } from '../../interfaces/interfaces';
 import { ButtonComponent } from '../UI/Button/Button';
 
-interface FinishedQuizProps {
+type FinishedQuizProps = {
     quiz: Quiz[];
     quizLength: number;
     results: any;
