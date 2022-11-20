@@ -1,0 +1,13 @@
+.NoData {
+    text-align: center;
+}
+
+.NoData h4 {
+    color: #fff;
+    margin: 0 0 50px 0;
+}
+
+.NoData a {
+    color: #fff;
+    font-size: 24px;
+}

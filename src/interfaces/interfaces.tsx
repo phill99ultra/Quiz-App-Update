@@ -32,6 +32,7 @@ export interface QuizStore {
     setQuestionItem: (val: CreateQuizValues) => void;
     setClearQuiz: () => void;
     setModalTitleQuiz: () => void;
+    setDataToQuiz: (val: Quiz[]) => void;
     quiz: Quiz[];
 }
 export interface NavigationLink {

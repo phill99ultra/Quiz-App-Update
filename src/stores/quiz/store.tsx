@@ -1,9 +1,7 @@
 import create from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-import { QuizStore, State, CreateQuizValues } from '../../interfaces/interfaces';
-
-// TO DO: delete devtools middleware after testing app
+import { QuizStore, State, CreateQuizValues, Quiz } from '../../interfaces/interfaces';
 
 export const useQuizStore = create<QuizStore>()(
     devtools(
@@ -95,6 +93,14 @@ export const useQuizStore = create<QuizStore>()(
                 set((state) => (
                     { modalTitleQuiz: !state.modalTitleQuiz}
                 ))
+            },
+            setDataToQuiz: (items: Quiz[]) => {
+                const { quiz } = get();                
+                if (quiz.length === 0) {                   
+                    set({
+                        quiz: items.concat(quiz)
+                    });
+                }
             },
             quiz: []         
        })

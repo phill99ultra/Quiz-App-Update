@@ -1,10 +1,13 @@
 import React from 'react';
 import { Typography, Box } from '@mui/material';
+import { useParams } from 'react-router-dom';
 
 import classes from './quiz.module.css';
 import { useQuizStore } from '../../stores/quiz/store';
 import ActiveQuiz from '../../components/ActiveQuiz/ActiveQuiz';
 import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz';
+import { useQuiz } from '../../RQ/queries/useQuiz';
+import { LoaderComponent } from '../../components/UI/Loader/Loader';
 
 const Quiz: React.FC<{}> = () => {
     const [ 
@@ -13,7 +16,7 @@ const Quiz: React.FC<{}> = () => {
         activeQuestion, 
         answerState, 
         setRetryQuiz,
-        setActiveQuestion, 
+        setActiveQuestion,         
         quiz 
     ] = useQuizStore(state => [
         state.results,
@@ -21,9 +24,17 @@ const Quiz: React.FC<{}> = () => {
         state.activeQuestion,
         state.answerState,
         state.setRetryQuiz,
-        state.setActiveQuestion,
+        state.setActiveQuestion,       
         state.quiz
     ]);   
+
+    const params = useParams();    
+    const { isLoading, isError, error } = useQuiz(params?.id);
+
+    if (isError && error instanceof Error) {
+        return <h2>{error.message}</h2>
+    }
+    if (isLoading) return <LoaderComponent/>    
     
     return (
         <Box className={classes.Quiz}>

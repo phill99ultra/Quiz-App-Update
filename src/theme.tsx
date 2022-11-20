@@ -16,6 +16,13 @@ export const finalTheme = createTheme({
                     padding: '20px'
                 }
             }
+        },
+        MuiTooltip: {
+            styleOverrides: {
+                tooltip: {
+                    fontSize: '24px'
+                }
+            }
         }                  
     }
 })

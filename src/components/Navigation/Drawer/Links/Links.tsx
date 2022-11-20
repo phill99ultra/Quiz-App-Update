@@ -1,5 +1,12 @@
 import React from 'react';
-import { List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
+import { 
+    List, 
+    ListItem, 
+    ListItemText, 
+    ListItemIcon, 
+    Tooltip, 
+    Zoom 
+} from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
 import { SIDEBAR_LINKS } from '../../../../constants/sidebarLinks';
@@ -20,14 +27,19 @@ const PagesLinks: React.FC<LinksProps> = ({ listClass, handleToggle }) => {
                     >
                         <NavLink 
                             className={classes.NavLink}
-                            to={link.to}
-                            //onClick={() => handleToggle()}
+                            to={link.to}                          
                         >
-                            <ListItemIcon 
-                                className={classes.NavIcon}
+                            <Tooltip 
+                                placement='right' 
+                                title={link.label}
+                                TransitionComponent={Zoom}
                             >
-                                { link.icon }
-                            </ListItemIcon>
+                                <ListItemIcon 
+                                    className={classes.NavIcon}
+                                >
+                                    { link.icon }
+                                </ListItemIcon>
+                            </Tooltip>
                             <ListItemText
                                 onClick={() => handleToggle()}
                                 className={classes.NavText}

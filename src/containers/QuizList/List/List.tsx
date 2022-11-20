@@ -1,33 +1,36 @@
 import React from 'react';
 import { ListItem, List, ListItemText } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-import { useQuizList } from '../../../RQ/queries/useQuizList';
 
 import classes from './list.module.css';
 import { LoaderComponent } from '../../../components/UI/Loader/Loader';
 
-const listP = [1, 2, 3];
+type QuizesProps = {
+    data: any[] | undefined;
+    isLoading: boolean;
+    isError: boolean;
+    error: any
+}
 
-const Quizes: React.FC<{}> = () => {
-    const { data, isLoading, isError, isFetching, error } = useQuizList()
+const Quizes: React.FC<QuizesProps> = ({ data, isLoading, isError, error }) => {   
+    
+    if (isLoading) return <LoaderComponent/>    
 
-    console.log('data ', data?.data)
-    console.log('error', { isLoading, isFetching })
     if (isError && error instanceof Error) {
         return <h2>{error.message}</h2>
     }
-    if (isLoading) return <LoaderComponent/>
+  
     return(       
         <List>
             {
-                listP.map((element, index) => (
-                    <ListItem key={index}>
+                data && data.map((element, index) => (
+                    <ListItem key={element.id}>
                         <NavLink 
                             className={classes.QuizLink}
-                            to={`/quiz/${element}`}
+                            to={`/quiz/${element.id}`}
                         >
                             <ListItemText>                                
-                                Test Nr. {element} 
+                                { index + 1 }.&nbsp;{ element.title } 
                             </ListItemText>
                         </NavLink>
                     </ListItem>
