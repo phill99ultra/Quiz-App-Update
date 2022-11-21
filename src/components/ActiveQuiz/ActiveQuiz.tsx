@@ -22,6 +22,8 @@ const ActiveQuiz: React.FC<ActiveQuizProps> = (
         handleAnswerClick 
     }
     ) => {
+
+    console.log('answerState', answerState)
     
     return(
         <Box className={classes.ActiveQuiz}>

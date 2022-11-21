@@ -16,14 +16,23 @@ type FinishedQuizProps = {
     quizLength: number;
     results: any;
     handleRetry: () => void;
+    handleBackToQuizes: () => void;
 }
 
-const FinishedQuiz: React.FC<FinishedQuizProps> = ({ quiz, quizLength, results, handleRetry }) => {
+const FinishedQuiz: React.FC<FinishedQuizProps> = (
+    { 
+        quiz, 
+        quizLength, 
+        results, 
+        handleRetry,
+        handleBackToQuizes 
+    }) => {
    
     const successCount = Object.keys(results).reduce((total, key) => {
         if (results[key] === State.SUCCESS) total++
         return total
     }, 0);
+    
     return(
         <Box className={classes.FinishedQuiz}>
             <List disablePadding={true}>
@@ -66,7 +75,7 @@ const FinishedQuiz: React.FC<FinishedQuizProps> = ({ quiz, quizLength, results, 
                         sizeBtn='medium' 
                         colorBtn='success'
                         iconBtn={<QuizIcon fontSize="large" />}
-                        onClick={handleRetry}                   
+                        onClick={handleBackToQuizes}                   
                     />                    
                 </Link>
             </Box>

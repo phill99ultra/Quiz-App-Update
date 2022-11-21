@@ -43,19 +43,8 @@ export const useQuizStore = create<QuizStore>()(
                             [answerId]: State.SUCCESS
                         },
                         results: resultsAnswers 
-                    });
+                    });                    
                     
-                    const timeout = window.setTimeout(() => {
-                        if (activeQuestion + 1 === quiz.length) {
-                            set({ isFinished: true });
-                        } else {
-                            set(state => ({ 
-                                activeQuestion: state.activeQuestion + 1, 
-                                answerState: null
-                            }));                    
-                        }
-                        window.clearTimeout(timeout);
-                    }, 1000);
                 } else {
                     resultsAnswers[question.id] = State.ERROR;            
                     set({ 
@@ -65,6 +54,17 @@ export const useQuizStore = create<QuizStore>()(
                         results: resultsAnswers
                     });                      
                 }
+                const timeout = window.setTimeout(() => {
+                    if (activeQuestion + 1 === quiz.length) {
+                        set({ isFinished: true });
+                    } else {                       
+                        set(state => ({ 
+                            activeQuestion: state.activeQuestion + 1, 
+                            answerState: null
+                        }));                    
+                    }
+                    window.clearTimeout(timeout);
+                }, 1000);
             },
             setQuestionItem: (value: CreateQuizValues) => {                
                 const { quiz } = get();
@@ -95,12 +95,21 @@ export const useQuizStore = create<QuizStore>()(
                 ))
             },
             setDataToQuiz: (items: Quiz[]) => {
-                const { quiz } = get();                
-                if (quiz.length === 0) {                   
+                const { quiz } = get();                                          
+                if (quiz.length === 0) {                               
                     set({
                         quiz: items.concat(quiz)
                     });
                 }
+            },
+            setBackToQuizes: () => {
+                set({
+                    results: {},
+                    isFinished: false,
+                    activeQuestion: 0,
+                    answerState: null,
+                    quiz: []
+                })
             },
             quiz: []         
        })

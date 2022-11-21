@@ -16,7 +16,8 @@ const Quiz: React.FC<{}> = () => {
         activeQuestion, 
         answerState, 
         setRetryQuiz,
-        setActiveQuestion,         
+        setActiveQuestion,  
+        setBackToQuizes,       
         quiz 
     ] = useQuizStore(state => [
         state.results,
@@ -24,17 +25,21 @@ const Quiz: React.FC<{}> = () => {
         state.activeQuestion,
         state.answerState,
         state.setRetryQuiz,
-        state.setActiveQuestion,       
+        state.setActiveQuestion,
+        state.setBackToQuizes,       
         state.quiz
     ]);   
 
     const params = useParams();    
-    const { isLoading, isError, error } = useQuiz(params?.id);
+    const { data, isLoading, isError, error } = useQuiz(params?.id);
 
     if (isError && error instanceof Error) {
         return <h2>{error.message}</h2>
     }
     if (isLoading) return <LoaderComponent/>    
+    
+    // console.log('data ', data)
+    console.log('results ', results)
     
     return (
         <Box className={classes.Quiz}>
@@ -47,6 +52,7 @@ const Quiz: React.FC<{}> = () => {
                             quizLength={quiz.length}
                             results={results}
                             handleRetry={setRetryQuiz}
+                            handleBackToQuizes={setBackToQuizes}
                         />
                     )
                 }

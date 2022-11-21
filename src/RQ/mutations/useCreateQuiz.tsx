@@ -1,12 +1,7 @@
 import { useMutation } from "react-query";
 
-import axios from "axios";
-import { AddQuiz } from "../../interfaces/interfaces";
-
-const addQuiz = (value: AddQuiz) => {
-    return axios.post('/quizes.json', value);
-}
+import { QuizService } from "../../constants/axios";
 
 export const useCreateQuiz = () => {
-    return useMutation(addQuiz);
+    return useMutation(QuizService.addQuiz);
 }
