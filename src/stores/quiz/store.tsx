@@ -111,12 +111,7 @@ export const useQuizStore = create<QuizStore>()(
                     answerState: null,
                     quiz: []
                 })
-            },
-            setAuth: () => {
-                set((state) => (
-                    { isAuth: !state.isAuth}
-                ))
-            },
+            },            
             quiz: []         
        })
     )

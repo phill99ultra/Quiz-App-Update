@@ -14,7 +14,6 @@ export enum State {
     SUCCESS = 'success',
     ERROR = 'error'
 }
-
 export interface AnswerState {
     [key: number]: State;
 }
@@ -34,8 +33,7 @@ export interface QuizStore {
     setClearQuiz: () => void;
     setModalTitleQuiz: () => void;
     setDataToQuiz: (val: Quiz[]) => void;
-    setBackToQuizes: () => void;
-    setAuth: () => void;
+    setBackToQuizes: () => void;    
     quiz: Quiz[];
 }
 export interface NavigationLink {
@@ -96,4 +94,8 @@ export interface CreateQuizValues {
     option4: string,
 }
 
-
+export enum ERRORS {
+    INVALID_PASSWORD = 'INVALID_PASSWORD',
+    EMAIL_NOT_FOUND = 'EMAIL_NOT_FOUND',
+    EMAIL_EXISTS = 'EMAIL_EXISTS'
+}

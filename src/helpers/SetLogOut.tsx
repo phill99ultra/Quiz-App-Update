@@ -7,5 +7,5 @@ export const SetLogOut = () => {
     localStorage.removeItem('userId');
     localStorage.removeItem('expirationData');
     useQuizStore.setState({ isAuth: false });
-    return redirect('/');
+    // return redirect('/');
 }

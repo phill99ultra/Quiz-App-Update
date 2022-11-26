@@ -12,39 +12,38 @@ import { AUTH_FIELDS_STATE } from '../../constants/authFieldsState';
 import { OnlyAuthKeys } from '../../formik/values/authValues';
 import { FormWrapper } from '../../HOC/FormWrapper/FormWrapper';
 import { ButtonsWrapper } from '../../HOC/Buttons/ButtonsWrapper';
-import { useAuthSignIn } from '../../RQ/mutations/useAuthSignIn';
+import { useAuthSign } from '../../RQ/mutations/useAuthSign';
 import { LoaderComponent } from '../../components/UI/Loader/Loader';
+import { AlertComponent } from '../../components/UI/Alert/Alert';
 
-const Auth: React.FC<{}> = () => {  
-    const handleRegister = () => {
-        console.log('register');
-    }   
-
-    const { mutate, data, isLoading } = useAuthSignIn();
+const Auth: React.FC<{}> = () => {    
+    const { mutate, data, error, isError, isLoading } = useAuthSign();
+    let submitAction: string | undefined = undefined;
+    
+    const handleRegister = (email: string, password: string, returnSecureToken: boolean) => {
+        mutate({ email, password, returnSecureToken });
+    };  
 
     if (isLoading) return (
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <LoaderComponent/>
         </Box>
-    )   
+    );       
 
     return(       
-        <FormWrapper>
+        <FormWrapper>           
             <Typography variant='h3'>Autorizație profil</Typography>
             <Formik
                 initialValues={initialValues}
                 validationSchema={authSchema}
                 onSubmit={(values, actions) => {
-                    mutate({
-                        email: values.email,
-                        password: values.password,
-                        returnSecureToken: true                        
-                    });
+                    if (submitAction === "primary") handleRegister(values.email, values.password, true);
+                    if (submitAction === "secondary") handleRegister(values.email, values.password, false);                  
                     actions.resetForm();                    
                 }}
             >
                 {
-                    ({ values, errors, touched, handleBlur, handleChange, isValid }) => (
+                    ({ values, errors, touched, handleBlur, handleChange, handleSubmit, isValid }) => (
                         <Form>
                             {
                                 Object.keys(AUTH_FIELDS_STATE.formControls).map((controlName, index) => {
@@ -69,13 +68,17 @@ const Auth: React.FC<{}> = () => {
                             }                           
                             <ButtonsWrapper>
                                 <ButtonComponent   
-                                    typeBtn='submit'                                 
+                                    typeBtn='button'                                 
                                     title='Logare'
                                     variantBtn="contained" 
                                     sizeBtn='medium' 
                                     colorBtn='success'
                                     iconBtn={<LoginIcon fontSize="large" />}                                    
                                     disableBtn={!isValid}
+                                    onClick={() => {
+                                        submitAction='primary';
+                                        handleSubmit();
+                                    }}
                                 />
                                 <ButtonComponent                                    
                                     title='Înregistrare'
@@ -83,13 +86,21 @@ const Auth: React.FC<{}> = () => {
                                     sizeBtn='medium' 
                                     colorBtn='primary'
                                     iconBtn={<PersonAddIcon fontSize="large" />}  
-                                    disableBtn={true}                                 
+                                    typeBtn='button'
+                                    disableBtn={!isValid} 
+                                    onClick={() => {
+                                        submitAction='secondary';
+                                        handleSubmit();
+                                    }}                                
                                 />
                             </ButtonsWrapper>                          
                         </Form>
                     )
                 }
             </Formik>
+            {
+                isError && error && <AlertComponent error={error}/>
+            }
         </FormWrapper>
     )
 }

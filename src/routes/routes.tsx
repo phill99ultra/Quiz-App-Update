@@ -9,8 +9,7 @@ import PageNotFound from '../containers/PageNotFound/PageNotFound';
 import { RequireAuth } from '../HOC/RequireAuth/RequireAuth';
 
 export const ROUTES = (
-    <Routes>
-        <Route path='/' element={<QuizList/>}/>
+    <Routes>       
         <Route 
             path='/auth' 
             element={<Auth/>}
@@ -31,7 +30,8 @@ export const ROUTES = (
                     <LogOut/>
                 </RequireAuth>
             }
-        />  
+        /> 
+        <Route path='/' element={<QuizList/>}/> 
         <Route path='*' element={<PageNotFound/>} />
     </Routes>
 );
