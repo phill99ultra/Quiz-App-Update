@@ -2,6 +2,7 @@ import { NavigationLink } from '../interfaces/interfaces';
 import LoginIcon from '@mui/icons-material/Login';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export const SIDEBAR_LINKS:NavigationLink[] = [
     {
@@ -15,11 +16,27 @@ export const SIDEBAR_LINKS:NavigationLink[] = [
         to: '/',
         label: 'Lista testelor',
         icon: <FormatListNumberedIcon fontSize="large"/>       
-    },   
+    } 
+];
+
+
+export const AUTH_SIDEBAR_LINKS:NavigationLink[] = [
     {
-        id: 3,
+        id: 1,
+        to: '/',
+        label: 'Lista testelor',
+        icon: <FormatListNumberedIcon fontSize="large"/>       
+    },  
+    {
+        id: 2,
         to: '/quiz-create',
         label: 'Creează test', 
         icon: <CreateNewFolderIcon fontSize="large"/>       
+    },
+    {
+        id: 3,
+        to: '/logout',
+        label: 'Delogare', 
+        icon: <LogoutIcon fontSize="large"/>       
     }
-];
+]

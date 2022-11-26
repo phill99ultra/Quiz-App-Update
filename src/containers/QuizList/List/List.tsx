@@ -3,7 +3,6 @@ import { ListItem, List, ListItemText } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
 import classes from './list.module.css';
-import { LoaderComponent } from '../../../components/UI/Loader/Loader';
 
 type QuizesProps = {
     data: any[] | undefined;
@@ -12,9 +11,7 @@ type QuizesProps = {
     error: any
 }
 
-const Quizes: React.FC<QuizesProps> = ({ data, isLoading, isError, error }) => {   
-    
-    if (isLoading) return <LoaderComponent/>    
+const Quizes: React.FC<QuizesProps> = ({ data, isLoading, isError, error }) => {     
 
     if (isError && error instanceof Error) {
         return <h2>{error.message}</h2>

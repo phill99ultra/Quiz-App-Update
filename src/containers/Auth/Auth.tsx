@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import LoginIcon from '@mui/icons-material/Login';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
@@ -12,22 +12,35 @@ import { AUTH_FIELDS_STATE } from '../../constants/authFieldsState';
 import { OnlyAuthKeys } from '../../formik/values/authValues';
 import { FormWrapper } from '../../HOC/FormWrapper/FormWrapper';
 import { ButtonsWrapper } from '../../HOC/Buttons/ButtonsWrapper';
+import { useAuthSignIn } from '../../RQ/mutations/useAuthSignIn';
+import { LoaderComponent } from '../../components/UI/Loader/Loader';
 
 const Auth: React.FC<{}> = () => {  
     const handleRegister = () => {
         console.log('register');
     }   
 
-    return(
+    const { mutate, data, isLoading } = useAuthSignIn();
+
+    if (isLoading) return (
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <LoaderComponent/>
+        </Box>
+    )   
+
+    return(       
         <FormWrapper>
             <Typography variant='h3'>Autorizație profil</Typography>
             <Formik
                 initialValues={initialValues}
                 validationSchema={authSchema}
-                onSubmit={(values, formikHelpers) => {
-                    console.log('values ', values);
-                    console.log('helpers ', formikHelpers);
-                    console.log('-----------')
+                onSubmit={(values, actions) => {
+                    mutate({
+                        email: values.email,
+                        password: values.password,
+                        returnSecureToken: true                        
+                    });
+                    actions.resetForm();                    
                 }}
             >
                 {
@@ -44,6 +57,7 @@ const Auth: React.FC<{}> = () => {
                                             inputName={control.name}
                                             inputLabel={control.label}
                                             inputVariant='outlined'
+                                            inputType={control.name === 'password' ? 'password' : ''}
                                             inputHandleBlur={handleBlur}
                                             inputHandleChange={handleChange}
                                             inputValue={values[Idx]}
@@ -54,8 +68,8 @@ const Auth: React.FC<{}> = () => {
                                 })
                             }                           
                             <ButtonsWrapper>
-                                <ButtonComponent
-                                    typeBtn='submit'
+                                <ButtonComponent   
+                                    typeBtn='submit'                                 
                                     title='Logare'
                                     variantBtn="contained" 
                                     sizeBtn='medium' 
@@ -63,13 +77,13 @@ const Auth: React.FC<{}> = () => {
                                     iconBtn={<LoginIcon fontSize="large" />}                                    
                                     disableBtn={!isValid}
                                 />
-                                <ButtonComponent
+                                <ButtonComponent                                    
                                     title='Înregistrare'
                                     variantBtn="contained" 
                                     sizeBtn='medium' 
                                     colorBtn='primary'
-                                    iconBtn={<PersonAddIcon fontSize="large" />}
-                                    onClick={() => handleRegister()}
+                                    iconBtn={<PersonAddIcon fontSize="large" />}  
+                                    disableBtn={true}                                 
                                 />
                             </ButtonsWrapper>                          
                         </Form>

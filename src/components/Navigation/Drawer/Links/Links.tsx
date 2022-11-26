@@ -9,19 +9,22 @@ import {
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
-import { SIDEBAR_LINKS } from '../../../../constants/sidebarLinks';
+import { SIDEBAR_LINKS, AUTH_SIDEBAR_LINKS } from '../../../../constants/sidebarLinks';
 import classes from './links.module.css';
 
 type LinksProps = {
     listClass: string;
+    authState: boolean; 
     handleToggle: () => void;
 }
 
-const PagesLinks: React.FC<LinksProps> = ({ listClass, handleToggle }) => {
+const PagesLinks: React.FC<LinksProps> = ({ listClass, authState, handleToggle }) => {    
+    let links = SIDEBAR_LINKS;
+    if (authState) links = AUTH_SIDEBAR_LINKS;
     return(
         <List className={listClass}>
             {
-                SIDEBAR_LINKS.map((link, index) => (
+                links.map((link, _) => (
                     <ListItem   
                         key={link.id}
                     >

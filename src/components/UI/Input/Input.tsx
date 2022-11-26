@@ -5,6 +5,7 @@ type InputProps = {
     inputName?: string;
     inputLabel: string;
     inputVariant: "standard" | "filled" | "outlined" | undefined;
+    inputType?: string;
     inputHandleBlur?: (e: any) => void;
     inputHandleChange?: (e: React.ChangeEvent<any>) => void;
     inputValue?: string;
@@ -17,6 +18,7 @@ export const InputComponent: React.FC<InputProps> = (
         inputName,
         inputLabel, 
         inputVariant, 
+        inputType,
         inputHandleBlur, 
         inputHandleChange, 
         inputValue,
@@ -28,7 +30,8 @@ export const InputComponent: React.FC<InputProps> = (
         <TextField 
             sx={{ borderRadius: '5px' }}             
             error={inputError}   
-            name={inputName}      
+            name={inputName}    
+            type={inputType}  
             label={inputLabel}
             variant={inputVariant}
             onBlur={inputHandleBlur}

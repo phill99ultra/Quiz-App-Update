@@ -12,6 +12,7 @@ export const useQuizStore = create<QuizStore>()(
             modalTitleQuiz: false,
             activeQuestion: 0,
             answerState: null,
+            isAuth: false,
             setMenuHandler: () => {
                 set((state) => (
                     { menu: state.menu === null ? true : !state.menu}
@@ -110,6 +111,11 @@ export const useQuizStore = create<QuizStore>()(
                     answerState: null,
                     quiz: []
                 })
+            },
+            setAuth: () => {
+                set((state) => (
+                    { isAuth: !state.isAuth}
+                ))
             },
             quiz: []         
        })

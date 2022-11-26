@@ -8,10 +8,18 @@ import { BackdropComponent } from '../../UI/Backdrop/Backdrop';
 import PagesLinks from './Links/Links';
 
 const DrawerComponent: React.FC<{}> = () => {
-    const [menu, setMenuHandler] = useQuizStore(state => [state.menu, state.setMenuHandler]);
+    const [
+        isAuth,
+        menu, 
+        setMenuHandler
+    ] = useQuizStore(state => [
+        state.isAuth,
+        state.menu, 
+        state.setMenuHandler
+    ]);
     const cls = [classes.Drawer];
     if (menu) cls.push(classes.open);
-    if (!menu && menu !== null) cls.push(classes.close); 
+    if (!menu && menu !== null) cls.push(classes.close);    
       
     return(
         <React.Fragment>
@@ -22,6 +30,7 @@ const DrawerComponent: React.FC<{}> = () => {
                 />
                 <PagesLinks 
                     listClass={classes.NavLinks}
+                    authState={isAuth}
                     handleToggle={setMenuHandler}
                 />
             </Drawer>

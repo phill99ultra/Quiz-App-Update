@@ -5,13 +5,20 @@ import Quizes from './List/List';
 import classes from './quiz-list.module.css';
 import { useQuizList } from '../../RQ/queries/useQuizList';
 import { NoData } from './NoData/NoData';
+import { LoaderComponent } from '../../components/UI/Loader/Loader';
 
 const QuizList: React.FC<{}> = () => {  
-    const { data, isLoading, isError, error } = useQuizList();    
+    const { data, isLoading, isError, error } = useQuizList();
     
-    if (!data?.length) return <NoData/>
+    if (isLoading) return (
+        <Box className={classes.QuizList}>
+            <LoaderComponent/>
+        </Box>
+    ); 
+
+    if (!data?.length) return <NoData/>;
     
-    return(
+    return(       
         <Box className={classes.QuizList}>
             <Typography variant='h3'>Lista Testelor</Typography>
             <Quizes

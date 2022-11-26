@@ -75,7 +75,7 @@ const FinishedQuiz: React.FC<FinishedQuizProps> = (
                         sizeBtn='medium' 
                         colorBtn='success'
                         iconBtn={<QuizIcon fontSize="large" />}
-                        onClick={handleBackToQuizes}                   
+                        onClick={() => handleBackToQuizes()}                   
                     />                    
                 </Link>
             </Box>

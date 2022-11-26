@@ -31,20 +31,17 @@ const Quiz: React.FC<{}> = () => {
     ]);   
 
     const params = useParams();    
-    const { data, isLoading, isError, error } = useQuiz(params?.id);
+    const { isLoading, isError, error } = useQuiz(params?.id);
 
     if (isError && error instanceof Error) {
         return <h2>{error.message}</h2>
     }
-    if (isLoading) return <LoaderComponent/>    
-    
-    // console.log('data ', data)
-    console.log('results ', results)
+    if (isLoading) return <LoaderComponent/>      
     
     return (
         <Box className={classes.Quiz}>
             <Box className={classes.QuizWrapper}>
-                <Typography variant='h3'>Răspunde-ți la toate întrebările</Typography>
+                <Typography variant='h3'>Alege varianta corectă!</Typography>
                 {
                     isFinished && (
                         <FinishedQuiz

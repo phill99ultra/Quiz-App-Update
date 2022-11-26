@@ -26,6 +26,7 @@ export interface QuizStore {
     modalTitleQuiz: boolean;
     activeQuestion: number;
     answerState: AnswerState | null;
+    isAuth: boolean;
     setMenuHandler: () => void;
     setRetryQuiz: () => void;
     setActiveQuestion: (answerId: number) => void;
@@ -34,6 +35,7 @@ export interface QuizStore {
     setModalTitleQuiz: () => void;
     setDataToQuiz: (val: Quiz[]) => void;
     setBackToQuizes: () => void;
+    setAuth: () => void;
     quiz: Quiz[];
 }
 export interface NavigationLink {
@@ -45,6 +47,10 @@ export interface NavigationLink {
 export interface AuthValues {
     email: string;
     password: string;
+}
+
+export interface AuthData extends AuthValues {
+    returnSecureToken: boolean;
 }
 
 export interface QuizTitle {

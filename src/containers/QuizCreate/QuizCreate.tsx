@@ -93,9 +93,7 @@ const QuizCreate: React.FC<{}> = () => {
                                     onClick={setModalTitleQuiz}
                                 />
                             </ButtonsWrapper>
-                            <ModalTitleQuiz />
-                            {/* <pre>{JSON.stringify(values, null, 4)}</pre>   */}
-                            {/* <pre>{JSON.stringify(errors, null, 4)}</pre>                        */}
+                            <ModalTitleQuiz />                           
                         </Form>
                     )
                 }

@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 
-import { QuizService } from "../../constants/axios";
+import { QUIZ_SERVICE } from "../../constants/axios";
 import { useQuizStore } from "../../stores/quiz/store";
 
 export const useQuiz = (quizId?: string | undefined) => {
@@ -10,12 +10,13 @@ export const useQuiz = (quizId?: string | undefined) => {
 
     return useQuery(
         ['quiz', quizId], 
-        () => QuizService.getQuiz(String(quizId)),       
+        () => QUIZ_SERVICE.getQuiz(String(quizId)),       
         {
-            select: data => {               
-                const { items } = data.data;                
-                setDataToQuiz(items);
-                return items;
+            select: response => {               
+                const { items } = response.data;
+                const sortedItems = items.sort((a: { id: number; }, b: { id: number; }) => a.id - b.id);                          
+                setDataToQuiz(sortedItems);
+                return sortedItems;
             },
             refetchOnWindowFocus: false,           
             enabled: !!quizId

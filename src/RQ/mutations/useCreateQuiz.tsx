@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 
-import { QuizService } from "../../constants/axios";
+import { QUIZ_SERVICE } from "../../constants/axios";
 
 export const useCreateQuiz = () => {
-    return useMutation(QuizService.addQuiz);
+    return useMutation(QUIZ_SERVICE.addQuiz);
 }

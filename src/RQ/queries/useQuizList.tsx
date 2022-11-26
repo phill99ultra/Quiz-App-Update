@@ -1,14 +1,14 @@
 import { useQuery } from "react-query";
 
 import { AddQuiz } from '../../interfaces/interfaces';
-import { QuizService } from "../../constants/axios";
+import { QUIZ_SERVICE } from "../../constants/axios";
 
 export const useQuizList = () => {
-    return useQuery('quiz-list', () => QuizService.getQuizes(), {
-        select: data => {   
+    return useQuery('quiz-list', () => QUIZ_SERVICE.getQuizes(), {
+        select: response => {   
             const quizes: any[] = [];              
-            if (data.data !== null) {               
-                const modifyData = Object.entries(data.data).map(entry => {
+            if (response.data !== null) {               
+                const modifyData = Object.entries(response.data).map(entry => {
                     return { [entry[0]]: entry[1] };
                 });    
                 modifyData.forEach((key, _) => {               
