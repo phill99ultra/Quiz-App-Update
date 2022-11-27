@@ -29,6 +29,7 @@ const DrawerComponent: React.FC<{}> = () => {
                     handleToggle={setMenuHandler}
                 />
                 <PagesLinks 
+                    isOpen={menu}
                     listClass={classes.NavLinks}
                     authState={isAuth}
                     handleToggle={setMenuHandler}

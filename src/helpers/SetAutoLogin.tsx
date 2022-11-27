@@ -7,8 +7,7 @@ export const SetAutoLogin = () => {
     if (!token) SetLogOut();
     if (localStorage.getItem('expirationData')) {
         const expirationDate = new Date(localStorage.getItem('expirationData') as string);
-        if (expirationDate <= new Date()) SetLogOut();
-        console.log('red line')
+        if (expirationDate <= new Date()) SetLogOut();        
         useQuizStore.setState({ isAuth: true }); 
         SetAutoLogOut( (expirationDate.getTime() - new Date().getTime()) / 1000 );
     }

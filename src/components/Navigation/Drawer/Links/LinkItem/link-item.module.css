@@ -15,6 +15,19 @@
     white-space: nowrap;
 }
 
+.NavTextOpen:hover {
+    cursor: pointer;
+}
+
+.NavTextOpen:hover span {
+    color: blue;
+}
+
+.NavTextOpen span {
+    font-size: 24px;
+    white-space: nowrap;
+}
+
 .NavLink:hover {
     color: blue;
 }

@@ -7,12 +7,17 @@ import QuizList from '../containers/QuizList/QuizList';
 import LogOut from '../components/LogOut/LogOut';
 import PageNotFound from '../containers/PageNotFound/PageNotFound';
 import { RequireAuth } from '../HOC/RequireAuth/RequireAuth';
+import { AuthRoute } from '../HOC/RequireAuth/AuthRoute';
 
 export const ROUTES = (
     <Routes>       
         <Route 
             path='/auth' 
-            element={<Auth/>}
+            element={
+                <AuthRoute>
+                    <Auth/>
+                </AuthRoute>
+            }
         />                    
         <Route path='/quiz/:id' element={<Quiz/>}/>
         <Route 
